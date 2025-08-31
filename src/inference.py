@@ -29,7 +29,7 @@ POSTFIX_QUESTION = f"\n\nSuy luận và trả ra đáp án cuối cùng với c�
 
 test = json.load(open(f"{ROOT_PATH}/data/vlsp2025_submission_task2.json"))
 
-database_mapping = json.load(open(f"{ROOT_PATH}/law_db/vlsp2025_law_v3.json"))
+database_mapping = json.load(open(f"{ROOT_PATH}/law_db/vlsp2025_law_converted.json"))
 
 def extract_answer(answer):
     keyword = answer.split("Đáp án cuối cùng:")[-1]

@@ -96,8 +96,7 @@ def concat_images_grid(image_paths, captions=None, grid_size=None, font_path=Non
 
     return canvas
 
-database = json.load(open("law_db/vlsp2025_law_table_replace.json"))
-database_new = json.load(open("law_db/vlsp2025_law_new.json"))
+database = json.load(open("law_db/vlsp2025_law_new.json"))
 database_mapping = {}
 
 for item in database:
@@ -105,14 +104,7 @@ for item in database:
     for article in item["articles"]:
         database_mapping[item["id"]][article["id"]] = article["text"]
 
-for item in database_new:
-    for article in item["articles"]:
-        if article["id"] not in database_mapping[item["id"]]:
-            print(article["id"])
-            database_mapping[item["id"]][article["id"]] = article["text"]
-
-        
-FUSION_IMG_COUNT = 29
+FUSION_IMG_COUNT = 0
 
 for law, rule in database_mapping.items():
     for k, text in rule.items():
@@ -126,5 +118,5 @@ for law, rule in database_mapping.items():
             
         database_mapping[law][k] = process_tables(database_mapping[law][k])
 
-with open("law_db/vlsp2025_law_v3.json", "w") as f:
+with open("law_db/vlsp2025_law_converted.json", "w") as f:
     json.dump(database_mapping, f, indent=4, ensure_ascii=False)
